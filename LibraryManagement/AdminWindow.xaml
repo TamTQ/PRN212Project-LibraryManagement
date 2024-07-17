@@ -1,0 +1,80 @@
+﻿<Window x:Class="LibraryManagement.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManagement"
+        mc:Ignorable="d"
+        Title="Manager" Height="430" Width="680" ResizeMode="NoResize">
+    <Grid>
+        <Button Content="Logout" HorizontalAlignment="Right" Margin="0,9,21,0" VerticalAlignment="Top" Width="80" Height="23" Click="btnLogout_Click"/>
+        <TabControl Margin="0,32,0,0">
+            <TabItem Header="Book Management">
+                <Grid Height="376">
+                    <ListView Margin="10,122,161,79" x:Name="lvBooks" SelectionChanged="lvBooks_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Title" Width="250" DisplayMemberBinding="{Binding Path=Title}"/>
+                                <GridViewColumn Header="Author" Width="150" DisplayMemberBinding="{Binding Path=Author}"/>
+                                <GridViewColumn Header="Genre" Width="100" DisplayMemberBinding="{Binding Path=Genre.Genre1}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Label Content="Title" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Author" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Genre" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtTitle" HorizontalAlignment="Left" Margin="71,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="279"/>
+                    <TextBox x:Name="txtAuthor" HorizontalAlignment="Left" Margin="71,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
+                    <ComboBox x:Name="cboGenre" HorizontalAlignment="Left" Margin="71,76,0,0" VerticalAlignment="Top" Width="120" DisplayMemberPath="Genre1" SelectedValuePath="GenreId"/>
+                    <Button x:Name="btnAddBook" Content="Add Book" HorizontalAlignment="Left" Margin="10,322,0,0" VerticalAlignment="Top" Width="80" Height="28" Click="btnAddBook_Click"/>
+                    <Button x:Name="btnDeleteBook" Content="Delete Book" HorizontalAlignment="Left" Margin="126,322,0,0" VerticalAlignment="Top" Width="80" Height="28" Click="btnDeleteBook_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Lend Management">
+                <Grid>
+                    <ListView Margin="10,66,10,66" x:Name="lvLends">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="User" Width="100" DisplayMemberBinding="{Binding Path=User.FullName}"/>
+                                <GridViewColumn Header="Title" Width="250" DisplayMemberBinding="{Binding Path=Book.Title}"/>
+                                <GridViewColumn Header="Lend Date" Width="100" DisplayMemberBinding="{Binding Path=LendDate}"/>
+                                <GridViewColumn Header="Due Date" Width="100" DisplayMemberBinding="{Binding Path=DueDate}"/>
+                                <GridViewColumn Header="Return Date" Width="100" DisplayMemberBinding="{Binding Path=ReturnDate}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button Content="Show Overdue Books" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="166" Height="32" Click="btnShowOverdueBooks_Click"/>
+                    <Button Content="Show All" HorizontalAlignment="Left" Margin="211,10,0,0" VerticalAlignment="Top" Width="72" Height="32" Click="btnShowAll_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="User Management">
+                <Grid>
+                    <TextBlock Text="Manage Users" FontWeight="Bold" FontSize="16" Margin="10,10,0,0"/>
+
+                    <Label Content="Full Name:" Margin="10,35,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtFullName" Margin="100,35,10,0" VerticalAlignment="Top"/>
+
+                    <Label Content="Email:" Margin="10,70,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtEmail" Margin="100,70,10,0" VerticalAlignment="Top"/>
+
+                    <Label Content="Password:" Margin="10,105,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtPassword" Margin="100,105,10,0" VerticalAlignment="Top"/>
+
+                    <Button x:Name="btnAddUser" Content="Add User" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Width="92" Height="26" Click="btnAddUser_Click"/>
+                    <Button x:Name="btnDeleteUser" Content="Delete User" HorizontalAlignment="Left" Margin="128,140,0,0" VerticalAlignment="Top" Width="92" Height="26" Click="btnDeleteUser_Click"/>
+
+                    <ListView x:Name="lvUser" Width="654" Margin="10,193,10,44" SelectionChanged="lvUser_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="UserID" Width="50" DisplayMemberBinding="{Binding UserId}"/>
+                                <GridViewColumn Header="Full Name" Width="200" DisplayMemberBinding="{Binding FullName}"/>
+                                <GridViewColumn Header="Email" Width="250" DisplayMemberBinding="{Binding Email}"/>
+                                <GridViewColumn Header="Password" Width="150" DisplayMemberBinding="{Binding Password}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
